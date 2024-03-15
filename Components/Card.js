@@ -1,7 +1,10 @@
-import {StyleSheet, Text, View} from "react-native";
+import {Button, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+export default function EventCard({Key, Author, Title, Message}) {
 
-export default function EventCard({key, Author, Title, Message}) {
-    
+    const Stack = createNativeStackNavigator();
+
     const Styles = StyleSheet.create({
         Title: {
             fontSize: 18,
@@ -19,7 +22,6 @@ export default function EventCard({key, Author, Title, Message}) {
     
     if(Message.length > 100) {
         let Substring = "";
-        console.log(Message)
         for (let i = 0; i < 100; i++) {
             Substring += Message[i];
         }
@@ -28,7 +30,7 @@ export default function EventCard({key, Author, Title, Message}) {
     }
     
     return (
-        <View key={key} style={Styles.Card} >
+        <View key={Key} style={Styles.Card}>
             <Text style={Styles.Title}>{Title}</Text>
             <Text>{Message}</Text>
             <Text>{Author}</Text>

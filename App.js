@@ -1,14 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
-import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
-import * as rssParser from 'react-native-rss-parser';
-import React, {useState, useEffect} from 'react';
-import RSSFeed from "./rssFeed";
-import SafeViewAndroid from "./Components/SafeViewAndroid";
-import Header from "./Components/Header";
-
+import {StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Cards from "./Components/Cards";
+import 'react-native-gesture-handler';
+import Detail from "./Components/Detail";
 
 export default function App() {
   
+  const Stack = createNativeStackNavigator();
+
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -26,15 +27,11 @@ export default function App() {
   const [statusBarStyle, setStatusBarStyle] = useState('default');
   
   return (
-    <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
-      <StatusBar
-        barStyle={statusBarStyle}
-        hidden={false}
-      />
-      <Header></Header>
-      <ScrollView>
-        <RSSFeed></RSSFeed>
-      </ScrollView>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name={"Home"} component={Cards}  />
+        <Stack.Screen name={"Detail"} component={Detail} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
