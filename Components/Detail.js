@@ -23,8 +23,16 @@ export default function Detail({route}) {
         }
     });
     
-    let date = new Date(pubDate)
-    console.log(date)
+    const date = new Date(pubDate)
+
+    let dateText = "Geplaats: "
+
+    if(isToday(date)) {
+        dateText += `Vandaag om ${date.getHours()}:${date.getMinutes()}`
+    } else {
+        dateText += `${date.getDay()}-${date.getMonth()}-${date.getFullYear()} om ${date.getHours()}:${date.getMinutes()}`
+    }
+
     return (
         <View style={Styles.ViewMargin}>
             <Text style={Styles.titleText}>
@@ -34,8 +42,16 @@ export default function Detail({route}) {
                 {Message}
             </Text>
             <Text style={Styles.messageText}>
-                geplaats op: {date.getDay()}-{date.getMonth()}-{date.getFullYear()} om {date.getHours()}:{date.getMinutes()} 
+                {dateText} 
             </Text>
         </View>
     )
 }
+
+function isToday(date) {
+    const today = new Date();
+    return date.getDate() == today.getDate() &&
+    date.getMonth() == today.getMonth() &&
+    date.getFullYear() == today.getFullYear();
+}
+

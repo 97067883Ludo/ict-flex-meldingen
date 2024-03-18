@@ -23,15 +23,12 @@ export default function App() {
     },
   });
   
-  const [hidden, setHidden] = useState(false);
-  const [statusBarStyle, setStatusBarStyle] = useState('default');
-  
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name={"Home"} component={Cards}  />
+        <Stack.Screen name={"Home"} component={Cards}/>
         <Stack.Screen name={"Detail"} component={Detail} />
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+} 

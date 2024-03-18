@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {ActivityIndicator, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import * as rssParser from 'react-native-rss-parser';
 import EventCard from "./Card";
+import Header from './Header';
 
 function Cards({navigation}) {
 
@@ -19,7 +20,7 @@ function Cards({navigation}) {
                 if (feedData !== null) {
                     return
                 }
-                const response = await fetch('http://192.168.178.138:8080/');
+                const response = await fetch('https://rss.bjvanbemmel.nl/ict-flex');
                 const responseData = await response.text();
                 const parsedData = await rssParser.parse(responseData);
                 setFeedData(parsedData);
@@ -65,9 +66,13 @@ function Cards({navigation}) {
     }
     
     return (
-        <View style={{marginTop:10}}>
-            <ScrollView style={{paddingLeft: 25, paddingRight: 25, marginBottom: 10, }}>
-                {items}
+        <View>
+    
+            <ScrollView>
+                <View style={{paddingLeft: 25, paddingRight: 25, marginBottom: 10, marginTop: 10}}>
+                    {items}
+                </View>
+                
             </ScrollView>
         </View>
     )

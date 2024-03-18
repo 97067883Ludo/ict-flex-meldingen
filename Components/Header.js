@@ -7,7 +7,6 @@ export default function Header() {
             backgroundColor: '#eaeaea'
         },
         Text: {
-            marginTop: 10,
             fontWeight: 'bold',
             fontSize:24
         }
