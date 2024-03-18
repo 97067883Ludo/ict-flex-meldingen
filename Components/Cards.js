@@ -67,9 +67,8 @@ function Cards({navigation}) {
     
     return (
         <View>
-    
             <ScrollView>
-                <View style={{paddingLeft: 25, paddingRight: 25, marginBottom: 10, marginTop: 10}}>
+                <View style={{marginBottom: 10, marginTop: 10, paddingLeft: 25, paddingRight: 25,}}>
                     {items}
                 </View>
                 
