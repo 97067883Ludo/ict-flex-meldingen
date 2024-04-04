@@ -30,7 +30,7 @@ export default function Detail({route}) {
     if(isToday(date)) {
         dateText += `Vandaag om ${date.getHours()}:${date.getMinutes()}`
     } else {
-        dateText += `${date.getDay()}-${date.getMonth()}-${date.getFullYear()} om ${date.getHours()}:${date.getMinutes()}`
+        dateText += `${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`
     }
 
     return (

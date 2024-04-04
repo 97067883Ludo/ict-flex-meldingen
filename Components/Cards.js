@@ -3,8 +3,16 @@ import {ActivityIndicator, SafeAreaView, ScrollView, StyleSheet, Text, Touchable
 import * as rssParser from 'react-native-rss-parser';
 import EventCard from "./Card";
 import Header from './Header';
+import Storage from 'react-native-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function Cards({navigation}) {
+
+    const storage = new Storage({
+        size: 100,
+        storageBackend: AsyncStorage,
+        defaultExpires: null,
+      });
 
     const [feedData, setFeedData] = useState(null);
 
@@ -23,11 +31,11 @@ function Cards({navigation}) {
                 const response = await fetch('https://rss.bjvanbemmel.nl/ict-flex');
                 const responseData = await response.text();
                 const parsedData = await rssParser.parse(responseData);
+
                 setFeedData(parsedData);
                 console.log(parsedData)
-            } catch (error) {
-                console.error('Error fetching RSS feed:', error);
-            }
+                storage.save({key: "lastRssData", data: {"data": responseData}})
+            } catch (error) {  }
         };
 
         fetchRSSFeed();
@@ -39,7 +47,7 @@ function Cards({navigation}) {
             <View>
                 <ActivityIndicator size="large" style={{marginTop: 25}} />
             </View>
-            );
+        );
     }
 
     let items = [];
@@ -54,8 +62,6 @@ function Cards({navigation}) {
                 )
             
     }
-    
-    console.log(items)
     
     if (!feedData) {
         return (

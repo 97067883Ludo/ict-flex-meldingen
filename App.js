@@ -5,8 +5,11 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Cards from "./Components/Cards";
 import 'react-native-gesture-handler';
 import Detail from "./Components/Detail";
+import registerNNPushToken from 'native-notify';
 
 export default function App() {
+  
+  registerNNPushToken(20592, 'SXLdoLyqSdbIDQtBhPhc5d');
   
   const Stack = createNativeStackNavigator();
 
